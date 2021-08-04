@@ -2,28 +2,58 @@
 
 
 <div class="main">
-  <div class="left-upload">
-    <div class="inserted-upload">
-      <button class='upload-button' @click="generate">Загрузить нового пользователя</button>
-      <p>Имя пользователя</p>
-      <p>{{Namebuf}}</p>
-      <p>Почта</p>
-      <p>{{Mailbuf}}</p>
-      <p>Телефон</p>
-      <p>{{PhoneBuf}}</p>
-      <p>Сайт</p>
-      <p>{{SiteBuf}}</p>
+  <div class="container">
+    <div class="row">
+      <div class="col-4">
+        <div class="left">
+              <div class="inserted-upload">
+                <button class='upload-button' @click="generate">Загрузить нового пользователя</button>
+                <p>Имя пользователя</p>
+                <p>{{Namebuf}}</p>
+                <p>Почта</p>
+                <p>{{Mailbuf}}</p>
+                <p>Телефон</p>
+                <p>{{PhoneBuf}}</p>
+                <p>Сайт</p>
+                <p>{{SiteBuf}}</p>
 
+              </div>
+        </div>
+      </div>
+      <div class="col-8 right">
+        <div class="col tt t-1">
+              <div class="tokens">
+                Вставить токен
+                <input @click="insert('name')" type="button" value="Имя">
+                <input @click="insert('mail')" type="button" value="Почта">
+                <input @click="insert('phone')" type="button" value="Телефон">
+                <input @click="insert('site')" type="button" value="Сайт"> 
+              </div>
+        </div>
+        <div class="col tt t-2">
+          <textarea v-model="current_input"></textarea>
+        </div>
+        <div class="col tt t-3">
+                <div class="tokens">
+                  Вставить токен
+                  <input  type="button" value="Загрузить из LocalStorage">
+                  <input  type="button" value="Загрузить в LocalStorage">
+  
+              </div>
+        </div>
+        <div class="col tt t-4">
+          {{this.current_input}}
+        </div>
+      </div>
     </div>
   </div>
+ 
+
+  <!--<div class="left-upload">
+
+  </div>
   <div class="right-field">
-    <div class="tokens">
-      Вставить токен
-      <input @click="insert('name')" type="button" value="Имя">
-      <input @click="insert('mail')" type="button" value="Почта">
-      <input @click="insert('phone')" type="button" value="Телефон">
-      <input @click="insert('site')" type="button" value="Сайт"> 
-    </div>
+
     <div style="padding:5px;" class='input-text'>
       <textarea
       v-model="current_input"
@@ -33,7 +63,7 @@
     </div>
     <div class="local"></div>
     <div class="results">{{this.current_input}}</div>
-  </div>
+  </div> -->
 </div>
 
 
@@ -108,14 +138,61 @@ export default {
 <style>
 
 @import url('https://fonts.googleapis.com/css2?family=Jura:wght@700&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css");
+
+
+.header {
+  margin-bottom: 80px;
+}
 
 
 .main {
   font-family: 'Jura', sans-serif;
-  background-color:mintcream ;
   color: aliceblue;
+  min-height: 300px;
+  margin-top: 50px;
 }
 
+.train {
+  padding: 20px;
+
+  background-color: rgb(138, 138, 138);
+  position: relative;
+  border: rgb(255, 255, 255) 1px solid;
+}
+
+.left {
+  height: 400px;
+}
+
+.right {
+  background-color: rgb(42, 40, 40);
+  padding: 20px;
+  border-radius: 30px;
+  overflow: hidden;
+  padding-right: 20px;
+}
+
+.t-1 { 
+  height: 100px;
+  background-color: rgb(107, 107, 107);
+}
+
+.t-2, .t-4 {
+  height: 180px;
+  background-color: rgb(170, 170, 170);
+}
+
+.t-3 {
+  height: fit-content;
+  background-color: rgb(107, 107, 107);
+}
+.tt {
+  margin-bottom: 20px;
+  border-radius: 10px;
+  padding: 10px;
+
+}
 
 .inserted-upload{
   padding: 30px;
@@ -176,8 +253,7 @@ export default {
 
 
   .tokens{
-    height: 60px;
-    background-color: rgb(98, 133, 82);
+    margin-bottom: 12px;
   }
   .input-text{
     background-color: rgb(33, 90, 7);
@@ -185,10 +261,13 @@ export default {
 
   textarea{
     width:100%;
-    resize: vertical;
-    min-height: 100px;
+    resize: none;
+    color: white;
+    height: 100%;
+    background-color:  rgb(187, 187, 187);
     border:2px solid #aaa;
-    border-radius:4px;
+    border-radius:7px;
+    overflow: hidden;
     margin: 0;
     outline:none;
     padding:8px;
@@ -200,20 +279,26 @@ export default {
   }
 
 input[type=button]{
-    width:10%;
+    width:fit-content;
     background-color : #4CAF50;
     color: seashell;
-    margin-left: 2px;
-    padding: 5px;
+    margin-left: 5px;
+    padding: 10px 20px;
+    border: none;
     margin-top: 12px;
-    transition:.3s;
   }
 
-input[type=button]:hover{
-    width:10%;
-
-
+  input[type=button]:hover{
+    background-color: #126415; /* Green */
+    color: white;
   }
+
+  input[type=button]:active{
+      background-color: rgb(158, 172, 156); /* Green */
+      color: black;
+  }
+
+
 
   .local {
     height: 60px;
@@ -224,6 +309,11 @@ input[type=button]:hover{
     height: fit-content;
     padding-bottom: 10px;
     background-color: rgb(33, 90, 7);
+  }
+
+  body {
+    margin: 0px;
+    background-color: rgb(241, 241, 241);
   }
 
 </style>
