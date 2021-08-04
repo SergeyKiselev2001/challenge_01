@@ -3,8 +3,8 @@
 
 <div class="main">
   <div class="container">
-    <div class="row">
-      <div class="col-4">
+    <div class="row gy-5">
+      <div class="col-lg-4 col-md-5">
         <div class="left">
               <div class="inserted-upload">
                 <button class='upload-button' @click="generate">Загрузить нового пользователя</button>
@@ -16,11 +16,10 @@
                 <p>{{PhoneBuf}}</p>
                 <p>Сайт</p>
                 <p>{{SiteBuf}}</p>
-
               </div>
         </div>
       </div>
-      <div class="col-8 right">
+      <div class="col-lg-8 col-md-7 right">
         <div class="col tt t-1">
               <div class="tokens">
                 Вставить токен
@@ -38,7 +37,6 @@
                   Вставить токен
                   <input @click="uploadFromLS" type="button" value="Загрузить из LocalStorage">
                   <input @click="uploadToLS" type="button" value="Загрузить в LocalStorage">
-  
               </div>
         </div>
         <div class="col tt t-4">
@@ -47,23 +45,6 @@
       </div>
     </div>
   </div>
- 
-
-  <!--<div class="left-upload">
-
-  </div>
-  <div class="right-field">
-
-    <div style="padding:5px;" class='input-text'>
-      <textarea
-      v-model="current_input"
-      type="textarea" style="rows=4;width:98%;margin:1%;">
-
-      </textarea>
-    </div>
-    <div class="local"></div>
-    <div class="results">{{this.current_input}}</div>
-  </div> -->
 </div>
 
 
@@ -324,5 +305,6 @@ input[type=button]{
     margin: 0px;
     background-color: rgb(241, 241, 241);
   }
+
 
 </style>
