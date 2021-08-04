@@ -30,7 +30,7 @@
               </div>
         </div>
         <div class="col tt t-2">
-          <textarea v-model="current_input"></textarea>
+          <textarea v-model="current_input" v-html="current_input_html"></textarea>
         </div>
         <div class="col tt t-3">
                 <div class="tokens">
@@ -39,8 +39,8 @@
                   <input @click="uploadToLS" type="button" value="Загрузить в LocalStorage">
               </div>
         </div>
-        <div class="col tt t-4">
-          {{this.current_input}}
+        <div class="col tt t-4" v-html="this.current_input_html">
+      
         </div>
       </div>
     </div>
@@ -64,12 +64,15 @@ export default {
   data(){
       return {
 
-      current_input : ' ',
-      
+      current_input : '',
+      current_input_html : '',
+
+    
+
       Name : ['Sergey', 'Vladilen', 'Ilya', 'Mareyn', 'Atraxa', 'Yarok'],
       Mail : ['kfc@mail.ru', 'noizemc@mail.ru','thirdemail@mail.ru','helloworld@mail.ru', 'b.ada@mail.ru'],
       Phone : ['1232','4352','4357','0536'],
-      Site : ['1232.com','4352.com','4357.com','0536.com'],
+      Site : ['google.com','yandex.com','vk.com','youtube.com'],
 
       Namebuf : '',
       Mailbuf : '',
@@ -80,6 +83,24 @@ export default {
 
   mounted: function(){
     this.generate();
+  },
+
+
+  watch : {
+    current_input(){
+      
+      console.log(this.current_input);
+
+      let buffer = this.current_input.replaceAll('<S<', `<a class='TOKEN SITE' target='_blank' href=${'https://'+this.SiteBuf}>`);
+      buffer = buffer.replaceAll('>S>', "</a>");
+
+      buffer = buffer.replaceAll('<<', "<div class='TOKEN'>");
+      buffer = buffer.replaceAll('>>', "</div>");
+
+      console.log(buffer);
+
+      this.current_input_html = buffer;
+    }
   },
 
   methods:{
@@ -96,7 +117,7 @@ export default {
        this.Namebuf = '<<' + this.arrayRandElement(this.Name) + '>>';
        this.Mailbuf = '<<' + this.arrayRandElement(this.Mail) + '>>';
        this.PhoneBuf = '<<' + this.arrayRandElement(this.Phone) + '>>';
-       this.SiteBuf = '<<' + this.arrayRandElement(this.Site) + '>>';
+       this.SiteBuf = this.arrayRandElement(this.Site);
     },
 
     arrayRandElement(arr){
@@ -116,7 +137,7 @@ export default {
         this.current_input+=this.PhoneBuf;
       }
       if (value == 'site'){
-        this.current_input+=this.SiteBuf;
+        this.current_input+=('<S<' +this.SiteBuf + '>S>');
       }
     },
   },
@@ -130,6 +151,20 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Jura:wght@700&display=swap');
 @import url("https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css");
 
+
+.TOKEN {
+  border : 4px #0a530c solid;
+  background-color: #fff;
+  color: black;
+  padding : 2px;
+  display: inline-block;
+  margin: 2px 5px;
+}
+
+.SITE {
+  background-color: rgb(111, 119, 195);
+  color: aliceblue;
+}
 
 .header {
   margin-bottom: 80px;
@@ -308,3 +343,5 @@ input[type=button]{
 
 
 </style>
+
+
