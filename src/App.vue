@@ -36,8 +36,8 @@
         <div class="col tt t-3">
                 <div class="tokens">
                   Вставить токен
-                  <input  type="button" value="Загрузить из LocalStorage">
-                  <input  type="button" value="Загрузить в LocalStorage">
+                  <input @click="uploadFromLS" type="button" value="Загрузить из LocalStorage">
+                  <input @click="uploadToLS" type="button" value="Загрузить в LocalStorage">
   
               </div>
         </div>
@@ -102,6 +102,15 @@ export default {
   },
 
   methods:{
+
+    uploadToLS(){
+      localStorage.setItem('current_input', this.current_input);
+    },
+
+    uploadFromLS(){
+      this.current_input = localStorage.getItem('current_input');
+    },
+
     generate(){
        this.Namebuf = '<<' + this.arrayRandElement(this.Name) + '>>';
        this.Mailbuf = '<<' + this.arrayRandElement(this.Mail) + '>>';
