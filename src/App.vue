@@ -15,29 +15,33 @@
                 <p>Телефон</p>
                 <p>{{PhoneBuf}}</p>
                 <p>Сайт</p>
-                <p>{{SiteBuf}}</p>
+                <p>&lt;&lt;{{SiteBuf}}&gt;&gt;</p>
               </div>
         </div>
       </div>
       <div class="col-lg-8 col-md-7 right">
         <div class="col tt t-1">
-              <div class="tokens">
-                Вставить токен
-                <input @click="insert('name')" type="button" value="Имя">
-                <input @click="insert('mail')" type="button" value="Почта">
-                <input @click="insert('phone')" type="button" value="Телефон">
-                <input @click="insert('site')" type="button" value="Сайт"> 
+              <div class="row">
+                <div class="col-12 col-md-12 col-lg-2 tokens"> Вставить токен 
+                  
+                </div>
+                <div class="col-10">
+                  <input @click="insert('name')" type="button" value="Имя">
+                  <input @click="insert('mail')" type="button" value="Почта">
+                  <input @click="insert('phone')" type="button" value="Телефон">
+                  <input @click="insert('site')" type="button" value="Сайт"> 
+                </div>
               </div>
+      
         </div>
         <div class="col tt t-2">
           <textarea v-model="current_input" v-html="current_input_html"></textarea>
         </div>
         <div class="col tt t-3">
                 <div class="tokens">
-                  Вставить токен
-                  <input @click="uploadFromLS" type="button" value="Загрузить из LocalStorage">
-                  <input @click="uploadToLS" type="button" value="Загрузить в LocalStorage">
-              </div>
+                    <input @click="uploadFromLS" type="button" value="Загрузить из LocalStorage">
+                    <input @click="uploadToLS" type="button" value="Загрузить в LocalStorage">
+                </div>
         </div>
         <div class="col tt t-4" v-html="this.current_input_html">
       
@@ -69,9 +73,9 @@ export default {
 
     
 
-      Name : ['Sergey', 'Vladilen', 'Ilya', 'Mareyn', 'Atraxa', 'Yarok'],
-      Mail : ['kfc@mail.ru', 'noizemc@mail.ru','thirdemail@mail.ru','helloworld@mail.ru', 'b.ada@mail.ru'],
-      Phone : ['1232','4352','4357','0536'],
+      Name : ['Sergey', 'Vladilen', 'Ilya', 'Mareyn', 'Nikita', 'Darya'],
+      Mail : ['kfc@mail.ru', 'randommail@mail.ru','thirdemail@mail.ru','helloworld@mail.ru', 'b.ada@mail.ru'],
+      Phone : ['+7(123)221-21-45','+4(352)454-23-67','+8(357)432-73-90','+1(536)003-34-18'],
       Site : ['google.com','yandex.com','vk.com','youtube.com'],
 
       Namebuf : '',
@@ -88,16 +92,11 @@ export default {
 
   watch : {
     current_input(){
-      
-      console.log(this.current_input);
-
       let buffer = this.current_input.replaceAll('<S<', `<a class='TOKEN SITE' target='_blank' href=${'https://'+this.SiteBuf}>`);
       buffer = buffer.replaceAll('>S>', "</a>");
 
       buffer = buffer.replaceAll('<<', "<div class='TOKEN'>");
       buffer = buffer.replaceAll('>>', "</div>");
-
-      console.log(buffer);
 
       this.current_input_html = buffer;
     }
@@ -151,195 +150,36 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Jura:wght@700&display=swap');
 @import url("https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css");
 
-
-.TOKEN {
-  border : 4px #0a530c solid;
-  background-color: #fff;
-  color: black;
-  padding : 2px;
-  display: inline-block;
-  margin: 2px 5px;
-}
-
-.SITE {
-  background-color: rgb(111, 119, 195);
-  color: aliceblue;
-}
-
-.header {
-  margin-bottom: 80px;
-}
-
-
-.main {
-  font-family: 'Jura', sans-serif;
-  color: aliceblue;
-  min-height: 300px;
-  margin-top: 50px;
-}
-
-.train {
-  padding: 20px;
-
-  background-color: rgb(138, 138, 138);
-  position: relative;
-  border: rgb(255, 255, 255) 1px solid;
-}
-
-.left {
-  height: 400px;
-}
-
-.right {
-  background-color: rgb(42, 40, 40);
-  padding: 20px;
-  border-radius: 30px;
-  overflow: hidden;
-  padding-right: 20px;
-}
-
-.t-1 { 
-  height: 100px;
-  background-color: rgb(107, 107, 107);
-}
-
-.t-2, .t-4 {
-  height: 180px;
-  background-color: rgb(170, 170, 170);
-}
-
-.t-3 {
-  height: fit-content;
-  background-color: rgb(107, 107, 107);
-}
-.tt {
-  margin-bottom: 20px;
-  border-radius: 10px;
-  padding: 10px;
-
-}
-
-.inserted-upload{
-  padding: 30px;
-  background-color: rgb(63, 63, 52);
-  height: auto;
- 
-
-  width: auto;
-  border-radius: 30px;
-}
-
-.upload-button{
-    min-width: fit-content;
-    background-color: #4CAF50; /* Green */
-    border: none;
-    font-family: 'Jura', sans-serif;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-}
-.upload-button:hover{
-    background-color: #126415; /* Green */
-    color: white;
-}
-.upload-button:active{
-    background-color: rgb(158, 172, 156); /* Green */
-    color: black;
-}
-
-.left-upload {
-
-  float: left;
-  padding: 10px;
- /* margin: 5px;
-  width: 30%;
-  height: 500px;
-  background-color: #2c3e50;
-  border: 10px green solid;
-  */
-  display: inline-block;
-}
-
-.right-field {
-  
-  display: inline-block;
-  
-  width: 60%;
-  margin: 5px;
-  height: fit-content;
-  margin-top:12px;
-  padding: 10px;
-  background-color: #2c3e50;
-  
-}
-
-
-  .tokens{
-    margin-bottom: 12px;
-  }
-  .input-text{
-    background-color: rgb(33, 90, 7);
-  }
-
-  textarea{
-    width:100%;
-    resize: none;
-    color: white;
-    height: 100%;
-    background-color:  rgb(187, 187, 187);
-    border:2px solid #aaa;
-    border-radius:7px;
-    overflow: hidden;
-    margin: 0;
-    outline:none;
-    padding:8px;
-    box-sizing: border-box;
-  }
-  input[type=text]:focus{
-    border-color:dodgerBlue;
-    box-shadow:0 0 8px 0 dodgerBlue;
-  }
-
-input[type=button]{
-    width:fit-content;
-    background-color : #4CAF50;
-    color: seashell;
-    margin-left: 5px;
-    padding: 10px 20px;
-    border: none;
-    margin-top: 12px;
-  }
-
-  input[type=button]:hover{
-    background-color: #126415; /* Green */
-    color: white;
-  }
-
-  input[type=button]:active{
-      background-color: rgb(158, 172, 156); /* Green */
-      color: black;
+  @media (max-width : 992px) {
+     .t-1 {
+         height: 150px;
+      }
+      input[type=button] {
+        padding: 12px;
+      }
   }
 
 
-
-  .local {
-    height: 60px;
-    background-color: rgb(98, 133, 82);
-  }
-  .results {
-    min-height: 60px;
-    height: fit-content;
-    padding-bottom: 10px;
-    background-color: rgb(33, 90, 7);
+    @media (max-width : 768px) {
+     .t-1 {
+         height: 110px;
+      }
   }
 
-  body {
-    margin: 0px;
-    background-color: rgb(241, 241, 241);
+
+      @media (max-width : 423px) {
+     .inserted-upload{
+       color: red;
+       margin-bottom: 50px;
+     }
   }
+
+      @media (max-width : 416px) {
+     .t-1 {
+         height: 170px;
+      }
+  }
+
 
 
 </style>

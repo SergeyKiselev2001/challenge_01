@@ -1,0 +1,91 @@
+.right {
+    background-color: rgb(42, 40, 40);
+    padding: 20px;
+    border-radius: 30px;
+    overflow: hidden;
+    padding-right: 20px;
+  }
+
+.TOKEN {
+    border : 4px #0a530c solid;
+    background-color: #fff;
+    color: black;
+    padding : 2px;
+    display: inline-block;
+    margin: 2px 5px;
+  }
+  
+  .SITE {
+    background-color: rgb(111, 119, 195);
+    color: aliceblue;
+  }
+  
+  .t-1 { 
+    height: 100px;
+    background-color: rgb(107, 107, 107);
+  }
+  
+  .t-2, .t-4 {
+        height: 180px;
+    background-color: rgb(170, 170, 170);
+  }
+
+  .t-4 {
+      min-height: 180px;
+      height: auto;
+  }
+
+
+  
+  .t-3 {
+    height: fit-content;
+    background-color: rgb(107, 107, 107);
+  }
+  .tt {
+    margin-bottom: 20px;
+    border-radius: 10px;
+    padding: 10px;
+  
+  }
+
+  textarea{
+    width:100%;
+    
+    resize: none;
+    color: white;
+    height: 100%;
+    background-color:  rgb(187, 187, 187);
+    border:2px solid #aaa;
+    border-radius:7px;
+    overflow: hidden;
+    margin: 0;
+    outline:none;
+    padding:8px;
+    box-sizing: border-box;
+  }
+  input[type=text]:focus{
+    border-color:dodgerBlue;
+    box-shadow:0 0 8px 0 dodgerBlue;
+  }
+
+input[type=button]{
+    width:fit-content;
+    background-color : #4CAF50;
+    color: seashell;
+    margin-left: 5px;
+    padding: 10px 20px;
+    border: none;
+    margin-top: 12px;
+  }
+
+  input[type=button]:hover{
+    background-color: #126415; /* Green */
+    color: white;
+  }
+
+  input[type=button]:active{
+      background-color: rgb(158, 172, 156); /* Green */
+      color: black;
+  } 
+
+
