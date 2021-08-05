@@ -57,7 +57,7 @@
     background-color:  rgb(187, 187, 187);
     border:2px solid #aaa;
     border-radius:7px;
-    overflow: hidden;
+    overflow: scroll;
     margin: 0;
     outline:none;
     padding:8px;

@@ -167,12 +167,6 @@ export default {
   }
 
 
-      @media (max-width : 423px) {
-     .inserted-upload{
-       color: red;
-       margin-bottom: 50px;
-     }
-  }
 
       @media (max-width : 416px) {
      .t-1 {
